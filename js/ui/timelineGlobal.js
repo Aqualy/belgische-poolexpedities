@@ -20,14 +20,6 @@ export function mount() {
   const root = h('div', { class: 'tlg-root' });
   screen.appendChild(root);
 
-  const hdr = h('div', { class: 'tlg-header' });
-  hdr.innerHTML = `
-    <span class="tlg-header__sup">BELGISCHE POOLEXPEDITIES</span>
-    <h2 class="tlg-header__title">Tijdlijn</h2>
-    <span class="tlg-header__hint">Tik een event aan om meer te lezen</span>
-  `;
-  root.appendChild(hdr);
-
   const chapters = h('div', { class: 'tlg-chapters' });
   root.appendChild(chapters);
   expeditions.forEach(exp => chapters.appendChild(buildChapter(exp)));

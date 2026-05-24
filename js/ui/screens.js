@@ -133,11 +133,12 @@ function _transition(from, to, params, kind) {
 }
 
 function _syncChrome(screen) {
-  const navBar     = document.getElementById('nav-bar');
-  const breadcrumb = document.getElementById('breadcrumb');
-  const iceCanvas  = document.getElementById('ice-canvas');
+  const navBar    = document.getElementById('nav-bar');
+  const iceCanvas = document.getElementById('ice-canvas');
 
-  if (navBar)     navBar.classList.toggle('is-visible', screen !== 'attract');
-  if (breadcrumb) breadcrumb.classList.toggle('is-visible', screen !== 'attract' && screen !== 'overview');
-  if (iceCanvas)  iceCanvas.classList.toggle('is-attract', screen === 'attract');
+  if (navBar) {
+    navBar.classList.toggle('is-visible', screen !== 'attract');
+    navBar.classList.toggle('has-back', screen !== 'attract' && screen !== 'overview');
+  }
+  if (iceCanvas) iceCanvas.classList.toggle('is-attract', screen === 'attract');
 }

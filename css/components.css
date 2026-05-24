@@ -69,7 +69,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: var(--s-3) var(--s-4) var(--s-3);
+  padding: var(--s-3) var(--s-4) var(--s-4);
   cursor: pointer;
   transition: background var(--dur-snap);
 }
@@ -89,7 +89,7 @@
 
 .expedition-card__image {
   flex: 0 0 auto;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/9;
   overflow: hidden;
   margin-bottom: var(--s-3);
 }
@@ -131,6 +131,7 @@
 .expedition-card__route-preview {
   margin-top: auto;
   padding-top: var(--s-3);
+  visibility: hidden;
 }
 
 /* ── Event detail card ── */
