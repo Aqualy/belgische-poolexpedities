@@ -25,6 +25,8 @@ document.head.appendChild(customStyle);
 function MapController({ routeLatLngs, driftLatLngs }) {
   const map = useMap();
   useEffect(() => {
+    // Recalculate container size in case Leaflet initialised before the screen was visible
+    map.invalidateSize();
     const allLatLngs = [...routeLatLngs, ...driftLatLngs];
     if (allLatLngs.length > 0) {
       const bounds = L.latLngBounds(allLatLngs);
@@ -49,19 +51,24 @@ export function ExpeditionMap({ expedition, onWaypointTap }) {
   });
 
   return (
-    <MapContainer 
-      center={[-40, -10]} 
-      zoom={3} 
+    <MapContainer
+      center={[-40, -10]}
+      zoom={3}
       style={{ width: '100%', height: '100%', background: '#070f1c' }}
       zoomControl={false}
       worldCopyJump={true}
       attributionControl={false}
+      dragging={true}
+      touchZoom={true}
+      scrollWheelZoom={true}
+      tap={false}
     >
       <TileLayer
         attribution='&copy; OpenStreetMap &copy; CARTO'
         url='https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
       />
       <MapController routeLatLngs={routeLatLngs} driftLatLngs={driftLatLngs} />
+      <MapInstanceCapture />
       
       {routeLatLngs.length > 0 && (
         <Polyline 
@@ -99,6 +106,18 @@ export function ExpeditionMap({ expedition, onWaypointTap }) {
 
 let root = null;
 let currentMapDiv = null;
+let leafletMapInstance = null;
+
+function MapInstanceCapture() {
+  const map = useMap();
+  useEffect(() => {
+    leafletMapInstance = map;
+    // Call again after the screen fade-in transition completes (~380ms)
+    const t = setTimeout(() => map.invalidateSize(), 420);
+    return () => clearTimeout(t);
+  }, [map]);
+  return null;
+}
 
 export function mountReactMap(containerEl, expedition, onWaypointTap) {
   if (!root) {
@@ -109,10 +128,10 @@ export function mountReactMap(containerEl, expedition, onWaypointTap) {
     currentMapDiv.style.inset = '0';
     root = createRoot(currentMapDiv);
   }
-  
+
   if (currentMapDiv.parentNode !== containerEl) {
     containerEl.appendChild(currentMapDiv);
   }
-  
+
   root.render(<ExpeditionMap expedition={expedition} onWaypointTap={onWaypointTap} />);
 }
