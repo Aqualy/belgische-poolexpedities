@@ -140,7 +140,7 @@ function renderGrid(container) {
     el.style.position = 'absolute';
     
     el.innerHTML = `
-      <div style="background: rgba(7,15,28,0.4); padding: 12px; border: 1px solid var(--c-rule); pointer-events: auto;">
+      <div style="background: rgba(7,15,28,0.4); padding: 12px; border: 1px solid var(--c-rule);">
         <img src="${item.file}" style="height: 250px; width: 250px; object-fit: contain; cursor: pointer; filter: grayscale(80%) sepia(20%) hue-rotate(185deg); transition: filter 0.3s;" loading="lazy" />
         <div style="text-align: center; color: var(--c-ice-1); margin-top: 12px; font-family: 'Courier New', monospace; font-size: 14px;">${item.title}</div>
       </div>
