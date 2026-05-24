@@ -1,0 +1,93 @@
+/* ── All keyframes are purposeful — no decorative loops ── */
+
+/* Screen cross-fade (goTo kind: crossfade) */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Expedition card → expedition screen zoom */
+@keyframes zoom-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes zoom-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(1.04); }
+}
+
+/* Route draw-on (driven by stroke-dashoffset, not keyframes) */
+
+/* Temperature graph path draw-on */
+@keyframes path-draw {
+  from { stroke-dashoffset: var(--path-length, 1000); }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Timeline tick appear */
+@keyframes tick-appear {
+  from { transform: scaleY(0); opacity: 0; }
+  to   { transform: scaleY(1); opacity: 1; }
+}
+
+/* Waypoint card appear */
+@keyframes card-appear {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal backdrop */
+@keyframes modal-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Utility classes for driven animations ── */
+.anim-fade-in {
+  animation: fade-in var(--dur-base) var(--ease-ice) both;
+}
+
+.anim-zoom-in {
+  animation: zoom-in var(--dur-slow) var(--ease-ice) both;
+}
+
+.anim-card-appear {
+  animation: card-appear var(--dur-snap) var(--ease-ice) both;
+}
+
+.anim-modal-in {
+  animation: modal-in var(--dur-base) var(--ease-out) both;
+}
+
+/* SVG route path — initial state before draw-on */
+.route-path {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  transition: stroke-dashoffset var(--dur-glacial) var(--ease-linear);
+}
+
+.route-path.is-drawn {
+  stroke-dashoffset: 0;
+}
+
+.route-drift-path {
+  stroke-dasharray: 6 8;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset var(--dur-glacial) var(--ease-linear);
+}
+
+.route-drift-path.is-drawn {
+  stroke-dashoffset: 0;
+}
+
+/* Temp graph path — initial state */
+.temp-path {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  transition: stroke-dashoffset var(--dur-glacial) var(--ease-linear);
+}
+
+.temp-path.is-drawn {
+  stroke-dashoffset: 0;
+}

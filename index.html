@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#070F1C">
+  <title>Belgische Poolexpedities</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Error trap: shows any module loading or runtime error visibly -->
+  <script>
+    window.addEventListener('error', function(e) {
+      var d = document.createElement('div');
+      d.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#8B0000;color:#fff;font-family:monospace;font-size:13px;padding:12px 16px;white-space:pre-wrap;word-break:break-all;';
+      d.textContent = 'JS ERROR: ' + e.message + '\n' + (e.filename || '') + ':' + e.lineno;
+      document.body.appendChild(d);
+    });
+    window.addEventListener('unhandledrejection', function(e) {
+      var d = document.createElement('div');
+      d.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#8B4500;color:#fff;font-family:monospace;font-size:13px;padding:12px 16px;white-space:pre-wrap;word-break:break-all;';
+      d.textContent = 'PROMISE ERROR: ' + (e.reason?.message || e.reason || e);
+      document.body.appendChild(d);
+    });
+  </script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/screens.css">
+  <link rel="stylesheet" href="css/motion.css">
+</head>
+<body>
+
+  <!-- Preloader: minimal ice crystal SVG, single frame — not animated -->
+  <div id="preloader">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="16" y1="2" x2="16" y2="30" stroke="currentColor" stroke-width="1"/>
+      <line x1="2" y1="16" x2="30" y2="16" stroke="currentColor" stroke-width="1"/>
+      <line x1="6.34" y1="6.34" x2="25.66" y2="25.66" stroke="currentColor" stroke-width="1"/>
+      <line x1="25.66" y1="6.34" x2="6.34" y2="25.66" stroke="currentColor" stroke-width="1"/>
+      <circle cx="16" cy="16" r="3" stroke="currentColor" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <!-- Ice canvas — sits over everything during attract, under UI afterwards -->
+  <canvas id="ice-canvas" class="is-attract" aria-hidden="true"></canvas>
+
+  <!-- Navigation bar — hidden on attract screen -->
+  <nav id="nav-bar" role="navigation" aria-label="Hoofdnavigatie">
+    <div class="nav-links">
+      <span class="t-nav" data-screen="overview">Overzicht</span>
+      <span class="t-nav" data-screen="timeline">Tijdlijn</span>
+      <span class="t-nav" data-screen="archive">Archief</span>
+      <span class="t-nav" data-action="search">Zoek</span>
+    </div>
+  </nav>
+
+  <!-- UI Layer — all screens live here -->
+  <main id="ui-layer" aria-live="polite">
+
+    <!-- ATTRACT -->
+    <section id="screen-attract" class="screen is-active" aria-label="Openingsscherm">
+      <!-- Built entirely by attract.js via canvas — headline rendered in DOM for accessibility -->
+      <div class="attract-headline" aria-hidden="true">
+        <h1>Belgische<br>Poolexpedities</h1>
+        <p>1897 — 1899 &middot; 1957 — 1958 &middot; 2004 — heden</p>
+      </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section id="screen-overview" class="screen" aria-label="Expeditieoverzicht">
+      <!-- Populated by overview.js -->
+    </section>
+
+    <!-- EXPEDITION -->
+    <section id="screen-expedition" class="screen" aria-label="Expeditiedetail">
+      <!-- Left: SVG map (injected by antarcticMap.js) -->
+      <!-- Right: data column (injected by expedition.js) -->
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="screen-timeline" class="screen" aria-label="Globale tijdlijn">
+      <!-- Populated by timelineGlobal.js -->
+    </section>
+
+    <!-- ARCHIVE -->
+    <section id="screen-archive" class="screen" aria-label="Archief">
+      <!-- Populated by archive.js -->
+    </section>
+
+    <!-- PERSON -->
+    <section id="screen-person" class="screen" aria-label="Bemanningslid">
+      <!-- Populated by person.js -->
+    </section>
+
+  </main>
+
+  <!-- Breadcrumb — persistent after attract -->
+  <div id="breadcrumb" role="navigation" aria-label="Locatiebalk">
+    <!-- Populated by wayfinding.js -->
+  </div>
+
+  <!-- Search overlay (appended to body by search.js) -->
+
+  <!-- App entry point -->
+  <script type="module" src="/js/main.js"></script>
+
+</body>
+</html>

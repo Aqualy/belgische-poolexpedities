@@ -1,0 +1,63 @@
+:root {
+  /* ── Color ── */
+  --c-bg:        #070F1C;
+  --c-surface:   #0D1B2A;
+  --c-ice-1:     #F4F9FC;
+  --c-ice-2:     #B8D4E8;
+  --c-ice-3:     #7EB8D4;
+  --c-ice-4:     #4A90B8;
+  --c-rule:      rgba(74, 144, 184, 0.28);
+  --c-rule-hard: rgba(74, 144, 184, 0.55);
+  --c-text:      #E8F2F8;
+  --c-text-dim:  rgba(232, 242, 248, 0.45);
+  --c-white:     #FFFFFF;
+
+  /* ── Typography ── */
+  --ff-serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  --ff-mono:  'Courier New', 'Lucida Console', Courier, monospace;
+
+  /* ── Type scale (touch wall — legible at arm's length) ── */
+  --fs-display: 7.5rem;   /* 120px — attract headline */
+  --fs-h1:      5.5rem;   /* 88px  — expedition name */
+  --fs-h2:      3.5rem;   /* 56px  — section title */
+  --fs-stat:    5rem;     /* 80px  — hero data numerals */
+  --fs-body:    1.5rem;   /* 24px  — editorial body text */
+  --fs-label:   1rem;     /* 16px  — monospace labels */
+  --fs-caption: 0.875rem; /* 14px  — image captions */
+  --fs-micro:   0.75rem;  /* 12px  — minimum used size */
+
+  /* ── Line heights ── */
+  --lh-tight:   1.1;
+  --lh-body:    1.55;
+  --lh-loose:   1.8;
+
+  /* ── Letter spacing ── */
+  --ls-tight: -0.01em;
+  --ls-normal: 0.01em;
+  --ls-wide:   0.12em;
+  --ls-wider:  0.18em;
+
+  /* ── Spacing (8px base) ── */
+  --s-1:  0.5rem;   /*  8px */
+  --s-2:  1rem;     /* 16px */
+  --s-3:  1.5rem;   /* 24px */
+  --s-4:  2.5rem;   /* 40px */
+  --s-5:  4rem;     /* 64px */
+  --s-6:  6rem;     /* 96px */
+  --s-7:  9rem;     /* 144px */
+
+  /* ── Motion — every duration is purposeful ── */
+  --ease-ice:    cubic-bezier(0.16, 0.84, 0.32, 1);
+  --ease-linear: linear;
+  --ease-out:    cubic-bezier(0, 0, 0.2, 1);
+  --dur-snap:    120ms;
+  --dur-base:    280ms;
+  --dur-slow:    600ms;
+  --dur-glacial: 1800ms;
+
+  /* ── Touch ── */
+  --hit-min: 88px;
+
+  /* ── Image tint (applied via CSS filter for DOM images) ── */
+  --img-filter: grayscale(1) sepia(0.15) hue-rotate(175deg) saturate(0.8) brightness(0.88) contrast(1.08);
+}

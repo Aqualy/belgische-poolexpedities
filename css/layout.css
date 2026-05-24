@@ -1,0 +1,207 @@
+/* ── Root layer stack ── */
+#ice-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 10;          /* below UI during normal screens */
+  pointer-events: none;
+}
+
+#ice-canvas.is-attract {
+  z-index: 30;          /* same level as UI during attract */
+  pointer-events: none; /* attract.js listens on #screen-attract, not the canvas */
+}
+
+#map-svg {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+#map-svg.is-active {
+  pointer-events: auto;
+}
+
+#ui-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.modal-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.modal-layer.is-open {
+  pointer-events: auto;
+}
+
+/* ── Screen container ── */
+.screen {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base);
+}
+
+.screen.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Navigation bar — persistent after attract ── */
+#nav-bar {
+  position: fixed;
+  bottom: 44px;
+  left: 0;
+  right: 0;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 var(--s-4);
+  border-top: 1px solid var(--c-rule);
+  border-bottom: 1px solid var(--c-rule);
+  background: rgba(7, 15, 28, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-base);
+}
+
+#nav-bar.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#nav-bar .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+#nav-bar .nav-links .t-nav {
+  flex: 0 0 160px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid var(--c-rule);
+}
+
+#nav-bar .nav-links .t-nav:last-child {
+  border-right: 1px solid var(--c-rule);
+}
+
+#nav-bar .nav-title {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--c-ice-3);
+}
+
+/* ── Breadcrumb bar ── */
+#breadcrumb {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 35;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--s-4);
+  border-top: 1px solid var(--c-rule);
+  background: rgba(7, 15, 28, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-base);
+}
+
+#breadcrumb.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── 2-column expedition layout ── */
+.layout-split {
+  display: grid;
+  grid-template-columns: 60fr 40fr;
+  height: calc(100vh - 100px);
+}
+
+.layout-split__map {
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--c-rule);
+}
+
+.layout-split__data {
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-3) var(--s-4) var(--s-4);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* ── 3-column overview layout ── */
+.layout-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  height: calc(100vh - 100px);
+  overflow: hidden;
+}
+
+.layout-3col__col {
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--c-rule);
+}
+
+.layout-3col__col:last-child {
+  border-right: none;
+}
+
+/* ── Full bleed panel ── */
+.layout-full {
+  position: absolute;
+  inset: 0;
+  bottom: 100px;
+  padding: var(--s-4);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* ── Preloader ── */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: var(--c-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--dur-slow);
+}
+
+#preloader.is-done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#preloader svg {
+  width: 32px;
+  height: 32px;
+  color: var(--c-ice-4);
+}
