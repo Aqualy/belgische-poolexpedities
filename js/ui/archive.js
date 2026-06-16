@@ -83,13 +83,15 @@ function buildFilterBar() {
     return el;
   });
 
-  const input = h('input', { class: 'filter-bar__search', placeholder: 'Zoek…', type: 'text' });
-  input.addEventListener('input', e => {
-    searchQuery = e.target.value.toLowerCase();
-    const grid = document.getElementById('archive-grid');
-    if (grid) renderGrid(grid);
+  // Tapping the search box opens the dedicated search overlay ("search page").
+  // A native <input> can't be used here: pointer.js calls preventDefault() on every
+  // pointerdown, so the field never focuses and no keyboard appears on the touchwall.
+  const searchBtn = h('div', { class: 'filter-bar__search filter-bar__search--btn' }, 'Zoek…');
+  searchBtn.addEventListener('pointerdown', e => {
+    e.stopPropagation();
+    window.dispatchEvent(new Event('app:open-search'));
   });
-  bar.appendChild(input);
+  bar.appendChild(searchBtn);
 
   return bar;
 }

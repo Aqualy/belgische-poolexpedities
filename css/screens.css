@@ -690,4 +690,82 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: var(--s-2);
+  /* leave room so results are never hidden behind the on-screen keyboard */
+  padding-bottom: 460px;
+}
+
+/* ── On-screen keyboard ── */
+.search-keyboard {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 39;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 24px 32px;
+  background: var(--c-surface);
+  border-top: 1px solid var(--c-rule-hard);
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--dur-base), opacity var(--dur-base);
+}
+
+.search-keyboard.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.search-keyboard__row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.search-keyboard__key {
+  min-width: 64px;
+  height: 64px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-mono);
+  font-size: 1.25rem;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-ice-1);
+  background: var(--c-bg);
+  border: 1px solid var(--c-rule);
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--dur-snap), color var(--dur-snap), border-color var(--dur-snap);
+}
+
+.search-keyboard__key:hover {
+  border-color: var(--c-ice-3);
+}
+
+.search-keyboard__key:active {
+  background: var(--c-ice-4);
+  color: var(--c-bg);
+  border-color: var(--c-ice-3);
+}
+
+.search-keyboard__key--wide {
+  min-width: 110px;
+}
+
+.search-keyboard__key--space {
+  min-width: 360px;
+  text-transform: uppercase;
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-wider);
+}
+
+/* The archive search box behaves as a button, not a text field */
+.filter-bar__search--btn {
+  cursor: pointer;
 }
