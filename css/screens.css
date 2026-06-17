@@ -161,6 +161,7 @@
   min-height: 0;
   display: flex;
   align-items: stretch;
+  overflow: hidden;
 }
 
 /* Detail panel */
@@ -349,6 +350,26 @@
   justify-content: space-between;
   padding: 28px 0;
   position: relative;
+  overflow-y: auto;
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-ice-4) transparent;
+}
+
+/* WebKit/Chromium — thin, sharp, ice-blue (kiosk is Chromium) */
+.tlg-chapter__body::-webkit-scrollbar {
+  width: 6px;
+}
+.tlg-chapter__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.tlg-chapter__body::-webkit-scrollbar-thumb {
+  background: var(--c-rule);
+  border-radius: 0;
+}
+.tlg-chapter__body:hover::-webkit-scrollbar-thumb,
+.tlg-chapter__body::-webkit-scrollbar-thumb:hover {
+  background: var(--c-ice-4);
 }
 
 .tlg-chapter__line {
